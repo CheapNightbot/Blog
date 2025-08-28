@@ -153,6 +153,6 @@
     }
 
     body {
-        @apply bg-background text-foreground min-w-screen min-h-screen;
+        @apply bg-background text-foreground min-h-screen;
     }
 }
