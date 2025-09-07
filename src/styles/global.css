@@ -3,8 +3,6 @@
 
 @plugin 'tailwind-scrollbar';
 
-/* --font-sans: "Delius", cursive; */
-
 :root {
     --background: oklch(89.678% 0.05619 301.181);
     --foreground: oklch(0.3651 0.0325 287.0807);
