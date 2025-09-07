@@ -2,38 +2,76 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
-import Layout from "./Layout.astro";
+import Layout from "../layouts/Layout.astro";
+
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<Layout>
-	<article class="max-w-4/5">
-		<div class="hero-image">
-			{
-				heroImage && (
-					<Image width={1020} height={510} src={heroImage} alt="" />
-				)
-			}
-		</div>
-		<div>
-			<div>
-				<div>
-					<FormattedDate date={pubDate} />
-					{
-						updatedDate && (
-							<div>
-								Last updated on{" "}
-								<FormattedDate date={updatedDate} />
-							</div>
-						)
-					}
+<Layout title={title}>
+	<article class="max-w-3xl mx-auto px-4 py-12 md:px-8 lg:px-0">
+		<h1
+			class="text-4xl font-bold text-foreground text-center leading-tight mb-4"
+		>
+			{title}
+		</h1>
+		{
+			description && (
+				<p class="text-lg text-center text-muted-foreground mt-4 max-w-2xl mb-8">
+					{description}
+				</p>
+			)
+		}
+		{/* Hero Image */}
+		{
+			heroImage && (
+				<div class="mb-10 rounded-3xl overflow-hidden shadow-xl ring-1 ring-border">
+					<Image
+						width={1020}
+						height={510}
+						src={heroImage}
+						alt={title || "Blog post hero image"}
+						class="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+					/>
 				</div>
-				<h1>{title}</h1>
-				<hr />
+			)
+		}
+
+		{/* Metadata & Description */}
+		<header class="mb-8">
+			<div
+				class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-muted-foreground mb-4"
+			>
+				<time>
+					✦. Published on:<FormattedDate date={pubDate} />
+				</time>
+				{
+					updatedDate && (
+						<div class="flex items-center gap-1">
+							<span>Last updated:</span>
+							<FormattedDate date={updatedDate} />
+							.✦
+						</div>
+					)
+				}
 			</div>
+			<hr class="my-8 border-border" />
+		</header>
+
+		{/* Markdown Content */}
+		<div
+			class="prose prose-lg prose-headings:font-bold prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md mx-auto selection:bg-accent"
+		>
 			<slot />
+			<div class="mt-12 pt-8 border-t border-border text-center">
+				<a
+					href="/"
+					class="!no-underline inline-block px-6 py-3 bg-purple-100 active:scale-95 !text-foreground font-medium rounded-full transition-all"
+				>
+					Back to all posts !
+				</a>
+			</div>
 		</div>
 	</article>
 </Layout>
