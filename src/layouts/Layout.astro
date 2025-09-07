@@ -1,20 +1,48 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body class="flex flex-col">
-		<Header />
-		<main class="flex-1">
-			<!-- <slot /> -->
-		</main>
-		<Footer />
+	<body class="flex">
+		<div
+			class="w-80 h-44 scale-105 bg-cover bg-no-repeat fixed left-0 top-0 bg-[url('/src/assets/ribbon.svg')] animate-in slide-in-from-left-5 slide-in-from-top-5 fade-in duration-1000 ease-in-out z-999"
+		>
+			<a
+				href="/"
+				class="fixed top-0 left-0 w-[26rem] rounded-b-[4rem] h-42 -rotate-28 -translate-x-24 -translate-y-12"
+			>
+			</a>
+		</div>
+		<section class="flex flex-col items-center w-screen max-h-screen">
+			<Header />
+			<main
+				class="flex-1 flex flex-col items-center mr-1 w-full custom-scrollbar overflow-y-scroll overflow-x-clip pt-4"
+			>
+				<slot />
+			</main>
+			<Footer />
+		</section>
 	</body>
 </html>
+
+<style>
+	.custom-scrollbar::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-thumb {
+		border-radius: calc(infinity * 1px);
+		background: var(--primary);
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+		background: color-mix(in oklab, var(--primary) 80%, transparent);
+	}
+</style>
