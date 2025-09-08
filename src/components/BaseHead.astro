@@ -1,10 +1,10 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/og-image.png';
-import { SITE_TITLE } from '../consts';
+import "../styles/global.css";
+import type { ImageMetadata } from "astro";
+import FallbackImage from "../assets/og-image.png";
+import { SITE_TITLE } from "../consts";
 
 interface Props {
 	title: string;
@@ -26,14 +26,23 @@ const { title, description, image = FallbackImage } = Astro.props;
 	rel="alternate"
 	type="application/rss+xml"
 	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
+	href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Delius&display=swap"
+	rel="stylesheet"
+/>
+
+<!-- Layout images preloads -->
+<link rel="preload" href="/src/assets/ribbon.svg" as="image" />
+<link rel="preload" href="/src/assets/moe.png" as="image" />
+<link rel="preload" href="/src/assets/moe-hi.png" as="image" />
+<link rel="preload" href="/src/assets/moe-sitting.png" as="image" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
