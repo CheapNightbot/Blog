@@ -76,45 +76,74 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	</article>
 	<div
 		id="scroll-indicator"
-		class="opacity-0 select-none w-36 h-36 fixed left-0 bottom-0 translate-x-1/12 translate-y-1/12 grid content-center justify-items-center z-99 transition-opacity duration-300 ease-in-out"
+		class="opacity-0 select-none w-20 h-20 active:scale-95 fixed left-2 bottom-2 grid content-center justify-items-center z-99 transition-opacity duration-300 ease-in-out"
 	>
 		<div
 			id="scroll-bg"
-			class="absolute w-32 h-32 bg-[url('/pastel.svg')] bg-center bg-cover bg-no-repeat hover:scale-95 animate-in slide-in-from-left-5 fade-in duration-1000 ease-in-out"
+			class="absolute w-full h-full bg-[url('/pastel.svg')] bg-center bg-cover bg-no-repeat hover:scale-95 animate-in slide-in-from-left-5 fade-in duration-1000 ease-in-out"
 		>
 		</div>
-		<p id="scroll-percent" class="z-100"></p>
+		<p id="scroll-percent" class="z-100">0%</p>
 	</div>
 </Layout>
 
 <script>
+	const scrollIndicator = document.getElementById("scroll-indicator");
+	const scrollBG = document.getElementById("scroll-bg");
+	const scrollPercent = document.getElementById("scroll-percent");
+
+	let percent = 0;
+	let rotationDeg = 0;
+
+	// Scroll back to top
+	scrollIndicator?.addEventListener("click", () => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+		updateScrollPercentage();
+		scrollIndicator.style.opacity = "0";
+	});
+
 	const updateScrollPercentage = () => {
 		const scrollTop = window.pageYOffset;
 		const docHeight = document.documentElement.scrollHeight;
 		const winHeight = window.innerHeight;
-		const scrollPercent = Math.floor(
-			(scrollTop / (docHeight - winHeight)) * 100,
-		);
 
-		const scrollIndicator = document.getElementById("scroll-indicator"); // parent
-		const scrollBG = document.getElementById("scroll-bg"); // pastel flower
-		const scrollElm = document.getElementById("scroll-percent"); // text showing percentage
-		if (scrollIndicator && scrollBG && scrollElm) {
-			scrollIndicator.addEventListener("click", () => {
-				window.scrollTo({ top: 0, behavior: "smooth" });
-				scrollIndicator.style.opacity = "0";
-			});
+		// Guard against division-by-zero on very short pages
+		if (docHeight <= winHeight) return;
 
-			if (scrollPercent >= 1) {
-				scrollIndicator.style.opacity = "100";
-				scrollBG.style.rotate = `${scrollPercent + 10}deg`;
-				scrollElm.innerText = `${scrollPercent.toString()}%`;
+		percent = Math.floor((scrollTop / (docHeight - winHeight)) * 100);
+		rotationDeg = percent * 3.6; // 0-100% -> 0-360deg
+
+		// Show / hide the indicator
+		if (scrollIndicator) {
+			if (percent > 0) {
+				scrollIndicator.style.opacity = "1";
+				scrollIndicator.style.cursor = "pointer";
 			} else {
 				scrollIndicator.style.opacity = "0";
-				scrollElm.innerText = `${scrollPercent.toString()}%`;
+				scrollIndicator.style.cursor = "default";
 			}
+		}
+
+		// Apply rotation to the scrollBg (i.e. the flower pastel thing)
+		// and update the text
+		if (scrollBG && scrollPercent) {
+			scrollBG.style.transform = `rotate(${rotationDeg}deg)`;
+			scrollPercent.textContent = `${percent}%`;
 		}
 	};
 
-	window.addEventListener("scroll", updateScrollPercentage);
+	// Use requestAnimationFrame for smoother updates
+	let ticking = false;
+	window.addEventListener("scroll", () => {
+		if (!ticking) {
+			window.requestAnimationFrame(() => {
+				updateScrollPercentage();
+				ticking = false;
+			});
+			ticking = true;
+		}
+	});
+
+	// Run once on page load, so the indicator relfects the initial position
+	updateScrollPercentage();
 </script>
