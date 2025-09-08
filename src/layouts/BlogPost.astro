@@ -74,4 +74,47 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			</div>
 		</div>
 	</article>
+	<div
+		id="scroll-indicator"
+		class="opacity-0 select-none w-36 h-36 fixed left-0 bottom-0 translate-x-1/12 -translate-y-1/12 grid content-center justify-items-center z-99 transition-opacity duration-300 ease-in-out"
+	>
+		<div
+			id="scroll-bg"
+			class="absolute w-32 h-32 bg-[url('/src/assets/pastel.svg')] bg-center bg-cover bg-no-repeat hover:scale-95 animate-in slide-in-from-left-5 fade-in duration-1000 ease-in-out"
+		>
+		</div>
+		<p id="scroll-percent" class="z-100"></p>
+	</div>
 </Layout>
+
+<script>
+	const updateScrollPercentage = () => {
+		const scrollTop = window.pageYOffset;
+		const docHeight = document.documentElement.scrollHeight;
+		const winHeight = window.innerHeight;
+		const scrollPercent = Math.floor(
+			(scrollTop / (docHeight - winHeight)) * 100,
+		);
+
+		const scrollIndicator = document.getElementById("scroll-indicator"); // parent
+		const scrollBG = document.getElementById("scroll-bg"); // pastel flower
+		const scrollElm = document.getElementById("scroll-percent"); // text showing percentage
+		if (scrollIndicator && scrollBG && scrollElm) {
+			scrollIndicator.addEventListener("click", () => {
+				window.scrollTo({ top: 0, behavior: "smooth" });
+				scrollIndicator.style.opacity = "0";
+			});
+
+			if (scrollPercent >= 1) {
+				scrollIndicator.style.opacity = "100";
+				scrollBG.style.rotate = `${scrollPercent + 10}deg`;
+				scrollElm.innerText = `${scrollPercent.toString()}%`;
+			} else {
+				scrollIndicator.style.opacity = "0";
+				scrollElm.innerText = `${scrollPercent.toString()}%`;
+			}
+		}
+	};
+
+	window.addEventListener("scroll", updateScrollPercentage);
+</script>
