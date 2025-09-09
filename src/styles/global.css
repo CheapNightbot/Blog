@@ -175,3 +175,7 @@
 mark {
     @apply bg-gradient-to-br from-rose-200 to-fuchsia-300 px-1.5 pb-0.5 rounded-lg;
 }
+
+summary {
+    @apply hover:cursor-pointer hover:text-primary;
+}
