@@ -54,7 +54,7 @@ const posts = (
 							{/* show "New" if was posted within 7 days ! */}
 							{Date.now() - post.data.pubDate.getTime() <
 								7 * 24 * 60 * 60 * 1000 && (
-								<div class="absolute top-0 right-0 translate-x-1/6 translate-y-1/6 text-xs font-bold text-primary-foreground transform rotate-45 bg-primary px-4 py-1 shadow-sm rounded animate-in zoom-in-60 duration-300">
+								<div class="group-hover:opacity-0 absolute top-0 right-0 translate-x-1/6 translate-y-1/6 text-xs font-bold text-primary-foreground transform rotate-45 bg-primary px-4 py-1 shadow-sm rounded animate-in zoom-in-60 duration-300">
 									New !
 								</div>
 							)}
