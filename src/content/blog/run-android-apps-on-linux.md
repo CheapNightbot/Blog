@@ -191,10 +191,9 @@ That is why we will be installing **Houdini** manually. BUT, before we do that, 
 
 Anyway, but that's where installing **Houdini** solved these issues for me ~
 
-> Credit: https://github.com/casualsnek/waydroid_script/issues/237#issuecomment-3106116308
+> Credit: <a href="https://github.com/casualsnek/waydroid_script/issues/237#issuecomment-3106116308" target="_blank">Comment by **akku1139**</a>
 
-- Download the following repository. Yes, DOWNLOAD.. do not clone the repository:
-    - <small>https://github.com/supremegamers/vendor_intel_proprietary_houdini/tree/hpe-14</small>
+- Download the following repository. Yes, DOWNLOAD.. do not clone the repository: <a href="https://github.com/supremegamers/vendor_intel_proprietary_houdini/tree/hpe-14" target="_blank">vendor_intel_proprietary_houdini</a>
 ![Download Houdini Repository](../../assets/run-android-apps-on-linux/download-houdini.png)
 - Then, somehow, unzip it (ganbatte reader-chan ৻(  •̀ ᗜ •́  ৻)) !
 - Open the directory in terminal (where you unzipped the repo downloaded above) and run `pwd`, followed by `ls` commands to make sure you see something similar:
