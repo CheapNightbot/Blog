@@ -78,14 +78,14 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	</article>
 	<div
 		id="scroll-indicator"
-		class="opacity-0 select-none w-20 h-20 active:scale-95 fixed left-2 bottom-2 grid content-center justify-items-center z-99 transition-opacity duration-300 ease-in-out"
+		class="opacity-0 select-none w-16 h-16 md:w-20 md:h-20 active:scale-95 fixed left-2 bottom-2 grid content-center justify-items-center z-99 transition-opacity duration-300 ease-in-out"
 	>
 		<div
 			id="scroll-bg"
 			class="absolute w-full h-full bg-[url('/pastel.svg')] bg-center bg-cover bg-no-repeat hover:scale-95 animate-in slide-in-from-left-5 fade-in duration-1000 ease-in-out"
 		>
 		</div>
-		<p id="scroll-percent" class="z-100">0%</p>
+		<p id="scroll-percent" class="z-100 text-xs md:text-base">0%</p>
 	</div>
 </Layout>
 
