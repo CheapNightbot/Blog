@@ -1,6 +1,6 @@
 ---
 title: "Run Android Apps on Linux?"
-description: "Being able run Android apps on Linux, isn't it like a dream? Well, at least to me..."
+description: "Being able run Android apps on Linux, isn't it like a dream? Well, at least to me until-..."
 pubDate: "Sep 11, 2025"
 heroImage: "../../assets/run-android-apps-on-linux/waydroid-on-fedora.png"
 ---
