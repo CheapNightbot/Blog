@@ -103,35 +103,33 @@
     --shadow-2xl: var(--shadow-2xl);
 }
 
-@layer base {
-    * {
-        @apply scrollbar-none;
+* {
+    @apply scrollbar-none;
+}
+
+body {
+    @apply bg-background text-foreground w-dvw h-dvh min-h-screen min-w-screen selection:bg-accent selection:text-card;
+}
+
+a {
+    @apply hover:text-primary;
+
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
     }
 
-    body {
-        @apply bg-background text-foreground min-h-screen selection:bg-accent selection:text-card;
+    50% {
+        transform: translateY(-10px);
     }
+}
 
-    a {
-        @apply hover:text-primary;
-
-    }
-
-    @keyframes float {
-
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
-        50% {
-            transform: translateY(-10px);
-        }
-    }
-
-    .animate-float {
-        animation: float 3s ease-in-out infinite;
-    }
+.animate-float {
+    animation: float 3s ease-in-out infinite;
 }
 
 kbd {
