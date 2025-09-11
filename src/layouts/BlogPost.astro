@@ -9,7 +9,7 @@ type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description} image={heroImage}>
 	<article class="max-w-3xl mx-auto px-4 py-12 md:px-8 lg:px-0">
 		<h1
 			class="text-4xl font-bold text-foreground text-center leading-tight mb-4"
