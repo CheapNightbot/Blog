@@ -20,7 +20,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		</h1>
 		{
 			description && (
-				<p class="md:text-lg text-center text-muted-foreground mt-4 max-w-2xl mb-8">
+				<p class="md:text-lg text-center text-muted-foreground mt-4 mb-8">
 					{description}
 				</p>
 			)
@@ -63,7 +63,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 		{/* Markdown Content */}
 		<div
-			class="prose prose-lg text-sm sm:text-base md:text-md prose-headings:font-bold prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md mx-auto"
+			class="prose prose-lg prose-headings:font-bold prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md mx-auto"
 		>
 			<slot />
 			<div class="mt-12 pt-8 border-t border-border text-center">
