@@ -2,6 +2,7 @@
 title: "Run Android Apps on Linux?"
 description: "Being able run Android apps on Linux, isn't it like a dream? Well, at least to me until-..."
 pubDate: "Sep 11, 2025"
+updatedDate: "Sep 12, 2025"
 heroImage: "../../assets/run-android-apps-on-linux/waydroid-on-fedora.png"
 ---
 
@@ -18,6 +19,33 @@ and if you don't get `wayland` as output, well-.. GOOD-BYE ~ (ˊ•͈ ◡ •͈�
 You still here? If yu still here ando not on Linux at all and thinking of switching to Linux just for Waydroid or just to be able to play ブルーアーカイブ (that second one does not work ( •᷄ᴗ•́)-..), me suggest to go with latest Fedora !
 
 Okie, if you ready.. the question is "why you want to read this blog, instead of official docs to install Waydroid?".. it does not work. I mean, the docs are very very good, and if you don't care about Google Play Store and other Google apps, you can go with the Vanilla version and me guess you will be good to go. But running G-Apps version (with Play Store and other Google related stuff), it wasn't that straight forward as it seemed, me had to install it more than 4 times (˵ ¬ᴗ¬˵), me yu- the reader-chan, I won't let you suffer the same !!! ｡°(°¯᷄◠¯᷅°)°｡
+
+## Before You Start
+
+Let's first talk about how powerful potato-.. I mean PC you need to run Waydroid !
+
+Honestly, the official Waydroid website and docs does not have specific information about the hardware requirements. Probably because its in "beta" stage. Nonetheless, the more, the better ~ So me just going to tell my own system specs where it runs smoothly without any issues:
+
+| Hardware Information |                                           |
+| -------------------- | ----------------------------------------- |
+| Memory               | 16.0 GiB                                  |
+| Processor            | 11th Gen Intel® Core™ i5-11260H × 12      |
+| Graphics*            | Intel® UHD Graphics (TGL GT1)             |
+| Disk Capacity**      | 512.1 GB                                  |
+
+<small>\* me do have <ins>NVIDIA GeForce RTX 2050</ins> graphics card in this laptop, but Fedora seems to not recognize or use it all. That means <ins>Waydroid is running on integrated Intel graphics</ins>! <br />
+\*\* Only 80 GB assigned to the OS.
+</small>
+
+| Software Information |                                           |
+| -------------------- | ----------------------------------------- |
+| OS Name              | Fedora Linux 42 (Workstation Edition)     |
+| OS Type              | 64-bit                                    |
+| GNOME Version        | 48                                        |
+| Windowing System     | Wayland                                   |
+
+
+One more interesting thing is, I tried on run Waydroid on this same system inside <a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a> by installing same Fedora Linux. The installation and everything else went okay. But at the end, all I got was black screen. In short, **Waydroid did not work inside VirtualBox for me**.
 
 ## Install Waydroid
 Assuming you are on Fedora (as me), the following command is for Fedora, but if your OS is support by Waydroid, please run the command suggested by the <a href="https://docs.waydro.id/usage/install-on-desktops" target="_blank">Waydroid Docs</a>.
