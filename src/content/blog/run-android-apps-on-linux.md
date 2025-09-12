@@ -45,7 +45,7 @@ Honestly, the official Waydroid website and docs does not have specific informat
 | Windowing System     | Wayland                                   |
 
 
-One more interesting thing is, I tried on run Waydroid on this same system inside <a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a> by installing same Fedora Linux. The installation and everything else went okay. But at the end, all I got was black screen. In short, **Waydroid did not work inside VirtualBox for me**.
+One more interesting thing is, I tried to run Waydroid on this same system inside <a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a> by installing same Fedora Linux. The installation and everything else went okay. But at the end, all I got was black screen. In short, **Waydroid did not work inside VirtualBox for me**.
 
 ## Install Waydroid
 Assuming you are on Fedora (as me), the following command is for Fedora, but if your OS is support by Waydroid, please run the command suggested by the <a href="https://docs.waydro.id/usage/install-on-desktops" target="_blank">Waydroid Docs</a>.
