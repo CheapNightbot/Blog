@@ -5,14 +5,29 @@
 <header
     class="fixed top-0 left-0 shadow-xl backdrop-blur-2xl w-full h-12 max-w-screen p-6 bg-[#EED7F4FF] flex items-center justify-end rounded-b-3xl z-50"
 >
-    <h1
-        class="hidden md:block flex-1 font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:text-primary select-none ml-44"
-    >
-        you want a potato ? 🥔
-    </h1>
-    <div class="flex gap-2 text-sm md:text-base">
+    <div class="absolute w-full flex items-center justify-center">
+        <h1
+            class="hidden md:block w-fit font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:text-primary select-none"
+        >
+            you want a potato ? 🥔
+        </h1>
+    </div>
+
+    <div id="links" class="flex gap-2 text-sm md:text-base z-1">
         <a href="https://journal.cheapnightbot.me"> [ Journal ] </a>
         <span></span>
         <a href="https://cheapnightbot.me"> [ Homepage ] </a>
     </div>
 </header>
+
+<script>
+    import { SITE_URL } from "../consts";
+    const links = document.getElementById("links");
+
+    if (links) {
+        window.origin === SITE_URL ||
+        window.origin.startsWith("http://localhost:")
+            ? (links.style.display = "flex")
+            : (links.style.display = "none");
+    }
+</script>
