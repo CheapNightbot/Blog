@@ -4,3 +4,4 @@
 export const SITE_AUTHOR = 'Cheap Nightbot';
 export const SITE_TITLE = 'A Potato Blog ~';
 export const SITE_DESCRIPTION = 'a potatoes personal blog..';
+export const SITE_URL = 'https://blog.cheapnightbot.me';
