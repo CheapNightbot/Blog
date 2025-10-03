@@ -14,20 +14,9 @@
     </div>
 
     <div id="links" class="flex gap-2 text-sm md:text-base z-1">
-        <a href="https://journal.cheapnightbot.me"> [ Journal ] </a>
+        <a href="https://journal.cheapnightbot.me" target="_blank"> [ Journal ] </a>
         <span></span>
-        <a href="https://cheapnightbot.me"> [ Homepage ] </a>
+        <a href="https://cheapnightbot.me" target="_blank"> [ Homepage ] </a>
     </div>
 </header>
 
-<script>
-    import { SITE_URL } from "../consts";
-    const links = document.getElementById("links");
-
-    if (links) {
-        window.origin === SITE_URL ||
-        window.origin.startsWith("http://localhost:")
-            ? (links.style.display = "flex")
-            : (links.style.display = "none");
-    }
-</script>
