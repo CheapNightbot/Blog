@@ -5,73 +5,74 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Layout from "../layouts/Layout.astro";
 
 const posts = (
-	await getCollection("blog", ({ data }) => {
-		return data.draft !== true;
-	})
+    await getCollection("blog", ({ data }) => {
+        return data.draft !== true;
+    })
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout>
-	<section class="w-full h-full py-12 px-4 md:px-8 lg:px-16">
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-		>
-			{
-				posts.map((post, index) => (
-					<article
-						class="group min-h-64 relative bg-gradient-to-br from-[#F1E6E4FF] to-[rgb(233,201,255)] rounded-3xl p-4 pt-3.5 shadow-lg hover:shadow-xl transition-transform duration-500 border border-muted hover:border-accent"
-						style={`--animate-delay: ${index * 0.1}s;`}
-					>
-						<a
-							href={`/${post.id}/`}
-							class="h-full flex flex-col"
-							aria-label={`Read ${post.data.title}`}
-						>
-							{post.data.heroImage && (
-								<div class="overflow-hidden rounded-2xl mb-5">
-									<Image
-										width={720}
-										height={360}
-										src={post.data.heroImage}
-										alt={
-											post.data.title || "Blog post image"
-										}
-										class="w-full h-48 object-cover  transition-transform duration-500 group-hover:scale-105"
-									/>
-								</div>
-							)}
+    <section class="w-full h-full py-12 px-4 md:px-8 lg:px-16">
+        <div class="grid grid-cols-1 gap-8 max-w-6xl mx-auto">
+            {
+                posts.map((post, index) => (
+                    <article
+                        class="group min-h-64 md:h-48 md:min-h-0 relative bg-gradient-to-br from-[#F1E6E4FF] to-[rgb(233,201,255)] rounded-3xl shadow-lg hover:shadow-xl transition-transform duration-500 border border-muted hover:border-accent"
+                        style={`--animate-delay: ${index * 0.1}s;`}
+                    >
+                        <a
+                            href={`/${post.id}/`}
+                            class="h-full flex flex-col md:flex-row md:even:flex-row-reverse"
+                            aria-label={`Read ${post.data.title}`}
+                        >
+                            {post.data.heroImage && (
+                                <div class="overflow-hidden rounded-t-2xl md:rounded-t-none md:rounded-l-2xl">
+                                    <Image
+                                        width={720}
+                                        height={360}
+                                        src={post.data.heroImage}
+                                        alt={
+                                            post.data.title || "Blog post image"
+                                        }
+                                        class="w-full md:size-full object-cover transition-transform duration-500 group-hover:scale-102"
+                                    />
+                                </div>
+                            )}
 
-							<h2 class="text-xl font-bold text-foreground mb-2 transition-colors line-clamp-2">
-								{post.data.title}
-							</h2>
+                            <div class="flex flex-col px-4 my-4">
+                                <h2 class="text-lg md:text-xl font-bold text-foreground mb-2 transition-colors line-clamp-2">
+                                    {post.data.title}
+                                </h2>
+                                <p class="text-sm md:text-base">
+                                    {post.data.description}
+                                </p>
+                            </div>
 
-							<div class="mt-auto">
-								<time class="inline-block px-3 py-1 bg-secondary border border-border text-muted-foreground text-xs font-medium rounded-full">
-									<FormattedDate date={post.data.pubDate} />
-								</time>
-							</div>
+                            {/* show "New" if was posted within 7 days ! */}
+                            {Date.now() - post.data.pubDate.getTime() <
+                                7 * 24 * 60 * 60 * 1000 && (
+                                <div class="group-hover:opacity-0 absolute top-0 right-0 translate-x-1/6 translate-y-1/6 text-xs font-bold text-primary-foreground transform rotate-45 bg-primary px-4 py-1 shadow-sm rounded animate-in zoom-in-60 duration-300">
+                                    New !
+                                </div>
+                            )}
+                        </a>
 
-							{/* show "New" if was posted within 7 days ! */}
-							{Date.now() - post.data.pubDate.getTime() <
-								7 * 24 * 60 * 60 * 1000 && (
-								<div class="group-hover:opacity-0 absolute top-0 right-0 translate-x-1/6 translate-y-1/6 text-xs font-bold text-primary-foreground transform rotate-45 bg-primary px-4 py-1 shadow-sm rounded animate-in zoom-in-60 duration-300">
-									New !
-								</div>
-							)}
-						</a>
-					</article>
-				))
-			}
-		</div>
-	</section>
+                        <time class="inline-block absolute right-0 bottom-0 -translate-x-2 -translate-y-2 w-fit px-3 py-1 bg-secondary border border-border text-muted-foreground text-xs font-medium rounded-full">
+                            <FormattedDate date={post.data.pubDate} />
+                        </time>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
 
-	{
-		posts.length === 0 && (
-			<section class="w-full flex-1 justify-center content-center">
-				<p class="animate-float text-center text-muted-foreground text-lg">
-					No posts yet... but me boiling something cute ~ !!
-				</p>
-			</section>
-		)
-	}
+    {
+        posts.length === 0 && (
+            <section class="w-full flex-1 justify-center content-center">
+                <p class="animate-float text-center text-muted-foreground text-lg">
+                    No posts yet... but me boiling something cute ~ !!
+                </p>
+            </section>
+        )
+    }
 </Layout>
